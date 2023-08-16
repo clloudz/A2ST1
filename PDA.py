@@ -109,12 +109,12 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 plt.show()
 
-# ab.fit(x_train, y_train)
-# predictions = ab.predict(x_test)
-#
-# print("Accuracy: ", accuracy_score(y_test, predictions))
+ab.fit(x_train, y_train)
+predictions = ab.predict(x_test)
 
-# print(classification_report(y_test, y_pred))
+print("Accuracy: ", accuracy_score(y_test, predictions))
+
+print(classification_report(y_test, y_pred))
 
 best_model = ab
 best_model.fit(x_train, y_train)
@@ -133,11 +133,9 @@ plt.legend(loc='lower right')
 plt.savefig('LOC_ROC')
 plt.show()
 
-# This part messing up rn so im leaving it for now:
-# for x in range(len(y_pred)):
-#     print("Predicted: ", y_pred[x], "Actual: ", y_test[x], "Data: ", x_test[x])
+for x in range(len(y_pred)):
+    print("Predicted: ", y_pred[x], "Actual: ", y_test[x], "Data: ", x_test[x])
 
-# This part they wanted us to use logistic regression aswell
 LR = LogisticRegression()
 parameters = {'penalty': ('l1', 'l2', 'elasticnet', 'none'),
               'C': [1, 100, 500, 1000],
@@ -186,11 +184,3 @@ print(matrix)
 
 for x in range(len(y_pred)):
     print("Predicted: ", y_pred[x], "Actual: ", y_test[x], "Data: ", x_test[x])
-
-import joblib
-
-model_filename = 'best_model.sav'
-joblib.dump(ab, model_filename)
-# import joblib
-#
-# joblib.dump(best_model, "CapstoneC.sav")
